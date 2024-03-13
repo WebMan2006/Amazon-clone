@@ -1,41 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { sampleProducts } from './data'
-import { Product } from './types/product'
+import { Col, Container, Nav, Navbar, Row } from "react-bootstrap";
+import { sampleProducts } from "./data";
+import { Product } from "./types/product";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div>
+    <div className="d-flex flex-column vh-full">
       <header>
-        <h1>TS Amazon</h1>
+        <Navbar bg="dark" variant="dark" expand="lg">
+          <Container>
+            <Navbar.Brand>Ts-Amazon</Navbar.Brand>
+          </Container>
+          <Nav>
+            <a href="/cart" className="nav-link">
+              Cart
+            </a>
+            <a href="/signin" className="nav-link">
+              Sign In
+            </a>
+            <a href=""></a>
+          </Nav>
+        </Navbar>
       </header>
       <main>
-        <ul>
-
-        {
-          sampleProducts.map((product: Product) => (
-            <li key={product.slung}>
-              <img src={product.image} alt={product.name} className='product-image'/>
-              <h2>
-                {product.name}
-              </h2>
-              <p>
-                ${product.price}
-              </p>
-            </li>
-          ))
-        }
-        </ul>
+        <Container className="mt-3">
+          <Row>
+            {sampleProducts.map((product: Product) => (
+              <Col key={product.slung} sm={6} md={4} lg={3}>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="product-image"
+                />
+                <h2>{product.name}</h2>
+                <p>${product.price}</p>
+              </Col>
+            ))}
+          </Row>
+        </Container>
       </main>
       <footer>
-        all right reserved
+        <div className="text-center">All right reserved</div>
       </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
